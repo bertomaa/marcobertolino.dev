@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal portfolio of a Cloud Engineer, Kubernetes Specialist, and Cybersecurity Enthusiast">
+    <meta name="description"
+        content="Personal portfolio of a Cloud Engineer, Kubernetes Specialist, and Cybersecurity Enthusiast">
     <title>Marco Developer | Cloud & Kubernetes Specialist</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- 3D Background Canvas -->
     <canvas id="bg-canvas"></canvas>
-    
+
     <!-- Main Content -->
     <div class="content-wrapper">
         <!-- Navigation -->
@@ -36,11 +39,18 @@
         <!-- Hero Section -->
         <section id="hero" class="hero">
             <div class="hero-content">
+                <div class="profile-picture-container" id="profile-picture-container">
+                    <!-- Populated by JS -->
+                </div>
                 <h1 class="hero-title" id="hero-name">Loading...</h1>
                 <p class="hero-tagline" id="hero-tagline">Loading...</p>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
                     <a href="#experience" class="btn btn-secondary">Experience</a>
+                    <a href="#" id="cv-download-btn" class="btn btn-accent" download="Marco_Bertolino_CV.pdf"
+                        style="display: none;">
+                        📄 Download CV
+                    </a>
                 </div>
             </div>
         </section>
@@ -98,9 +108,10 @@
 
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
+
     <!-- Custom Scripts -->
     <script src="js/scene.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>

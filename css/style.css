@@ -11,14 +11,14 @@
     --text-secondary: #a8b2d1;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
-    
+
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
@@ -94,6 +94,7 @@ body {
 .nav-links {
     display: flex;
     gap: var(--spacing-md);
+    position: relative;
 }
 
 .nav-link {
@@ -102,25 +103,33 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    padding: 0.5rem 0;
 }
 
-.nav-link::after {
+.nav-link.active {
+    color: var(--primary);
+}
+
+/* Liquid underline effect */
+.nav-links::before {
     content: '';
     position: absolute;
     bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
+    left: var(--underline-left, 0);
+    width: var(--underline-width, 0);
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+}
+
+.nav-links.has-active::before {
+    opacity: 1;
 }
 
 .nav-link:hover {
     color: var(--primary);
-}
-
-.nav-link:hover::after {
-    width: 100%;
 }
 
 /* Container */
@@ -142,6 +151,44 @@ body {
 
 .hero-content {
     animation: fadeInUp 1s ease-out;
+}
+
+/* Profile Picture */
+.profile-picture-container {
+    margin: 0 auto var(--spacing-md);
+    width: 180px;
+    height: 180px;
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 0 0 30px var(--primary-glow), 0 0 60px var(--secondary-glow);
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-out;
+}
+
+.profile-picture:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px var(--primary-glow), 0 0 80px var(--secondary-glow);
+}
+
+.profile-picture-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 0 30px var(--primary-glow), 0 0 60px var(--secondary-glow);
+    animation: fadeIn 1s ease-out;
 }
 
 .hero-title {
@@ -184,12 +231,12 @@ body {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    box-shadow: 0 4px 15px var(--primary-glow);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px var(--primary-glow);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
 }
 
 .btn-secondary {
@@ -203,6 +250,17 @@ body {
     border-color: var(--primary);
     background: rgba(0, 212, 255, 0.1);
     transform: translateY(-3px);
+}
+
+.btn-accent {
+    background: linear-gradient(135deg, #ff3366, #ff6b35);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
+}
+
+.btn-accent:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 51, 102, 0.5);
 }
 
 /* Sections */
@@ -291,8 +349,8 @@ body {
 
 /* Degrees Grid */
 .degrees-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-md);
 }
 
@@ -304,11 +362,82 @@ body {
 .degree-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
     width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+/* Double Degree Group */
+.double-degree-group {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: var(--spacing-md);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.double-degree-group::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.double-degree-group:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.double-degree-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.double-degree-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.double-degree-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.double-degree-institutions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.institution-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: var(--spacing-sm);
+    transition: all 0.3s ease;
+}
+
+.institution-chip:hover {
+    background: rgba(0, 212, 255, 0.05);
+    border-color: var(--primary);
 }
 
 .degree-institution {
@@ -327,12 +456,37 @@ body {
 .degree-year {
     color: var(--text-secondary);
     font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.degree-grade {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
     margin-bottom: var(--spacing-sm);
 }
 
 .degree-description {
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+.degree-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Experience Timeline */
@@ -352,11 +506,11 @@ body {
 .experience-card::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 0.75rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
     width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
     border-radius: 2px;
 }
 
@@ -473,6 +627,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -483,6 +638,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -490,9 +646,12 @@ body {
 }
 
 @keyframes gradientShift {
-    0%, 100% {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
@@ -515,24 +674,24 @@ body {
     .nav-links {
         gap: var(--spacing-sm);
     }
-    
+
     .nav-link {
         font-size: 0.9rem;
     }
-    
+
     .section {
         padding: var(--spacing-lg) 0;
     }
-    
+
     .hero {
         min-height: 80vh;
     }
-    
+
     .degrees-grid,
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .about-content {
         padding: var(--spacing-md);
     }
@@ -542,20 +701,20 @@ body {
     .nav-container {
         padding: 0 var(--spacing-sm);
     }
-    
+
     .nav-links {
         display: none;
     }
-    
+
     .container {
         padding: 0 var(--spacing-sm);
     }
-    
+
     .hero-cta {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .btn {
         width: 100%;
         text-align: center;

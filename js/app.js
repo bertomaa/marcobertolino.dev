@@ -24,6 +24,35 @@
         document.getElementById('hero-name').textContent = data.personal.name;
         document.getElementById('hero-tagline').textContent = data.personal.tagline;
 
+        // Profile picture
+        const profileContainer = document.getElementById('profile-picture-container');
+        if (data.personal.profilePicture) {
+            profileContainer.innerHTML = `
+                <img src="${data.personal.profilePicture}" 
+                     alt="${data.personal.name}" 
+                     class="profile-picture"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="profile-picture-placeholder" style="display: none;">
+                    ${data.personal.name.charAt(0)}
+                </div>
+            `;
+        } else {
+            // Show placeholder with first initial
+            profileContainer.innerHTML = `
+                <div class="profile-picture-placeholder">
+                    ${data.personal.name.charAt(0)}
+                </div>
+            `;
+        }
+
+        // CV Download button
+        if (data.personal.cvUrl) {
+            const cvBtn = document.getElementById('cv-download-btn');
+            cvBtn.href = data.personal.cvUrl;
+            cvBtn.target = '_blank';
+            cvBtn.style.display = 'inline-block';
+        }
+
         // About section
         document.getElementById('about-bio').textContent = data.personal.bio;
 
@@ -57,17 +86,71 @@
         const degreesContainer = document.getElementById('degrees-container');
         degreesContainer.innerHTML = '';
 
-        data.degrees.forEach((degree, index) => {
+        // Group degrees by degreeGroup
+        const groupedDegrees = {};
+        const standaloneeDegrees = [];
+
+        data.degrees.forEach(degree => {
+            if (degree.degreeGroup) {
+                if (!groupedDegrees[degree.degreeGroup]) {
+                    groupedDegrees[degree.degreeGroup] = [];
+                }
+                groupedDegrees[degree.degreeGroup].push(degree);
+            } else {
+                standaloneeDegrees.push(degree);
+            }
+        });
+
+        // Render grouped degrees (double degrees)
+        let animationDelay = 0;
+        Object.keys(groupedDegrees).forEach(groupKey => {
+            const degrees = groupedDegrees[groupKey];
+            const primaryDegree = degrees.find(d => d.isPrimary) || degrees[0];
+
+            const groupCard = document.createElement('div');
+            groupCard.className = 'double-degree-group animate-on-scroll';
+            groupCard.style.animationDelay = `${animationDelay * 0.1}s`;
+
+            const institutionsHTML = degrees.map(degree => `
+                <div class="institution-chip">
+                    <h4 class="degree-institution">${degree.institution}</h4>
+                    <p class="degree-title">${degree.degree}</p>
+                    <p class="degree-year">${degree.year}</p>
+                    ${degree.grade ? `<span class="degree-grade">GPA: ${degree.grade}</span>` : ''}
+                    <p class="degree-description">${degree.description}</p>
+                </div>
+            `).join('');
+
+            groupCard.innerHTML = `
+                <div class="double-degree-header">
+                    <div class="degree-badge">🎓 Double Master's Degree</div>
+                    <h3 class="double-degree-title">EIT Digital Master School</h3>
+                    <p class="double-degree-subtitle">Cybersecurity Specialization</p>
+                </div>
+                <div class="double-degree-institutions">
+                    ${institutionsHTML}
+                </div>
+            `;
+
+            degreesContainer.appendChild(groupCard);
+            animationDelay++;
+        });
+
+        // Render standalone degrees
+        standaloneeDegrees.forEach((degree) => {
             const degreeCard = document.createElement('div');
             degreeCard.className = 'glass-card degree-card animate-on-scroll';
-            degreeCard.style.animationDelay = `${index * 0.1}s`;
+            degreeCard.style.animationDelay = `${animationDelay * 0.1}s`;
+
             degreeCard.innerHTML = `
                 <h3 class="degree-institution">${degree.institution}</h3>
                 <p class="degree-title">${degree.degree}</p>
                 <p class="degree-year">${degree.year}</p>
+                ${degree.grade ? `<span class="degree-grade">GPA: ${degree.grade}</span>` : ''}
                 <p class="degree-description">${degree.description}</p>
             `;
             degreesContainer.appendChild(degreeCard);
+            animationDelay++;
         });
 
         // Experience section
@@ -185,6 +268,85 @@
         lastScroll = currentScroll;
     });
 
+    // Active section tracking for navigation
+    function initActiveNavigation() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navLinksContainer = document.querySelector('.nav-links');
+
+        if (!navLinksContainer) return;
+
+        const observerOptions = {
+            threshold: [0, 0.25, 0.5, 0.75, 1],
+            rootMargin: '-80px 0px -60% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.25) {
+                    const sectionId = entry.target.getAttribute('id');
+
+                    // Remove active class from all links
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+
+                    // Add active class to current link
+                    const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                        navLinksContainer.classList.add('has-active');
+
+                        // Calculate position for liquid underline with slight delay for smoother animation
+                        requestAnimationFrame(() => {
+                            const linkRect = activeLink.getBoundingClientRect();
+                            const containerRect = navLinksContainer.getBoundingClientRect();
+                            const leftOffset = linkRect.left - containerRect.left;
+                            const width = linkRect.width;
+
+                            navLinksContainer.style.setProperty('--underline-left', `${leftOffset}px`);
+                            navLinksContainer.style.setProperty('--underline-width', `${width}px`);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Set initial active state for first visible section
+        setTimeout(() => {
+            const firstVisibleSection = Array.from(sections).find(section => {
+                const rect = section.getBoundingClientRect();
+                return rect.top >= 0 && rect.top <= window.innerHeight / 2;
+            });
+
+            if (firstVisibleSection) {
+                const sectionId = firstVisibleSection.getAttribute('id');
+                const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    navLinksContainer.classList.add('has-active');
+
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const containerRect = navLinksContainer.getBoundingClientRect();
+                    const leftOffset = linkRect.left - containerRect.left;
+                    const width = linkRect.width;
+
+                    navLinksContainer.style.setProperty('--underline-left', `${leftOffset}px`);
+                    navLinksContainer.style.setProperty('--underline-width', `${width}px`);
+                }
+            }
+        }, 100);
+    }
+
     // Initialize app
     loadData();
+
+    // Initialize active navigation after content loads
+    setTimeout(() => {
+        initActiveNavigation();
+    }, 500);
 })();
