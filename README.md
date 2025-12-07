@@ -75,6 +75,19 @@ personal_website/
 - Firefox (latest)
 - Safari (latest)
 
+## Deployment
+
+### Firebase Hosting
+
+The project is configured for automatic deployment to Firebase Hosting via GitHub Actions.
+
+**Setup:**
+1. Update `.firebaserc` with your Firebase project ID
+2. Add `FIREBASE_SERVICE_ACCOUNT` and `FIREBASE_PROJECT_ID` to GitHub secrets
+3. Push to the `main` branch
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed setup instructions.
+
 ## License
 
 Feel free to use this template for your own personal website!
