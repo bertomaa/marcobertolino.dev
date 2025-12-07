@@ -1,0 +1,105 @@
+{
+    "personal": {
+        "name": "Marco Developer",
+        "tagline": "Cloud Engineer | Kubernetes Specialist | Cybersecurity Enthusiast",
+        "bio": "Passionate about building secure, scalable cloud infrastructure. Specialized in containerization, orchestration, and security best practices.",
+        "email": "marco@example.com",
+        "github": "https://github.com/marco",
+        "linkedin": "https://linkedin.com/in/marco"
+    },
+    "degrees": [
+        {
+            "institution": "Technical University",
+            "degree": "Master of Science in Computer Science",
+            "year": "2020",
+            "description": "Specialized in distributed systems and cloud computing architecture"
+        },
+        {
+            "institution": "State University",
+            "degree": "Bachelor of Science in Information Technology",
+            "year": "2018",
+            "description": "Focus on network security and systems administration"
+        }
+    ],
+    "experience": [
+        {
+            "company": "Cloud Solutions Inc.",
+            "role": "Senior Cloud Engineer",
+            "period": "2021 - Present",
+            "achievements": [
+                "Architected multi-region Kubernetes clusters serving 10M+ daily users",
+                "Implemented zero-trust security model reducing vulnerabilities by 80%",
+                "Led migration of legacy monoliths to microservices on GKE",
+                "Automated infrastructure provisioning using Terraform and GitOps"
+            ]
+        },
+        {
+            "company": "SecureTech Systems",
+            "role": "DevOps Engineer",
+            "period": "2019 - 2021",
+            "achievements": [
+                "Deployed and managed Kubernetes clusters on AWS EKS",
+                "Implemented CI/CD pipelines reducing deployment time by 60%",
+                "Conducted security audits and penetration testing",
+                "Developed custom monitoring solutions with Prometheus and Grafana"
+            ]
+        },
+        {
+            "company": "StartupCo",
+            "role": "Junior Systems Administrator",
+            "period": "2018 - 2019",
+            "achievements": [
+                "Maintained cloud infrastructure on AWS and Azure",
+                "Implemented automated backup and disaster recovery systems",
+                "Managed container deployments using Docker"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "SecureK8s",
+            "description": "Open-source security scanner for Kubernetes clusters that identifies misconfigurations and vulnerabilities",
+            "technologies": [
+                "Go",
+                "Kubernetes",
+                "Docker",
+                "Security"
+            ],
+            "link": "https://github.com/marco/securek8s"
+        },
+        {
+            "name": "CloudCost Optimizer",
+            "description": "Automated cost optimization tool for multi-cloud environments with AI-powered recommendations",
+            "technologies": [
+                "Python",
+                "AWS",
+                "GCP",
+                "Azure",
+                "Terraform"
+            ],
+            "link": "https://github.com/marco/cloudcost-optimizer"
+        },
+        {
+            "name": "K8s Dashboard",
+            "description": "Real-time monitoring dashboard for Kubernetes clusters with custom metrics and alerts",
+            "technologies": [
+                "React",
+                "Node.js",
+                "Prometheus",
+                "Grafana"
+            ],
+            "link": "https://github.com/marco/k8s-dashboard"
+        },
+        {
+            "name": "ZeroTrust Gateway",
+            "description": "Implementation of zero-trust network access for microservices architecture",
+            "technologies": [
+                "Istio",
+                "Kubernetes",
+                "OAuth2",
+                "mTLS"
+            ],
+            "link": "https://github.com/marco/zerotrust-gateway"
+        }
+    ]
+}
