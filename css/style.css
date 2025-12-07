@@ -302,7 +302,7 @@ body {
 .glass-card:hover {
     border-color: var(--primary);
     box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
 }
 
 /* About Section */
@@ -417,7 +417,7 @@ body {
     background: rgba(0, 212, 255, 0.05);
     border-color: var(--primary);
     box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
 }
 
 .degree-institution {

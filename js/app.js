@@ -124,7 +124,7 @@
             groupCard.innerHTML = `
                 <div class="double-degree-header">
                     <div class="degree-badge">🎓 Double Master's Degree</div>
-                    <h3 class="double-degree-title">EIT Digital Master School</h3>
+                    <h3 class="double-degree-title">European Institute of Technology</h3>
                     <p class="double-degree-subtitle">Cybersecurity Specialization</p>
                 </div>
                 <div class="double-degree-institutions">

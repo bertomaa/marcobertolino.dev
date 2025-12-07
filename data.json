@@ -11,29 +11,29 @@
     },
     "degrees": [
         {
-            "institution": "Eurecom / EIT Digital Master School",
-            "degree": "MSc Cybersecurity for Cloud",
-            "year": "2023",
-            "grade": "4.0/4.0",
-            "description": "Part of EIT Digital Double Master's Degree. Located in Sophia Antipolis, France. Achieved GPA 4.0/4.0.",
-            "degreeGroup": "eit-digital",
-            "isPrimary": true
-        },
-        {
             "institution": "University of Turku",
             "degree": "MSc Cybersecurity",
-            "year": "2022",
+            "year": "2021/2022",
             "grade": "3.3/4.0",
-            "description": "Part of EIT Digital Double Master's Degree. Located in Turku, Finland. Achieved GPA 3.3/4.0.",
+            "description": "Part of EIT Digital Double Master's Degree. Located in Turku, Finland.",
             "degreeGroup": "eit-digital",
             "isPrimary": false
         },
         {
+            "institution": "Eurecom / EIT Digital Master School",
+            "degree": "MSc Cybersecurity for Cloud",
+            "year": "2022/2023",
+            "grade": "4.0/4.0",
+            "description": "Part of EIT Digital Double Master's Degree. Located in Sophia Antipolis, France.",
+            "degreeGroup": "eit-digital",
+            "isPrimary": true
+        },
+        {
             "institution": "Trento University",
             "degree": "BSc Computer Science",
-            "year": "2021",
+            "year": "2018/2021",
             "grade": "4.0/4.0",
-            "description": "Graduated with GPA 4.0/4.0. Thesis: Hybrid Mobile Applications: Analysis and Usage of the React Native Framework."
+            "description": "Thesis: Hybrid Mobile Applications: Analysis and Usage of the React Native Framework."
         }
     ],
     "experience": [
