@@ -226,6 +226,7 @@ body {
     display: inline-block;
     border: none;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .btn-primary {
