@@ -60,6 +60,17 @@
             ]
         },
         {
+            "company": "Siemens",
+            "role": "Cloud Engineer Intern",
+            "period": "Mar 2023 - Aug 2023",
+            "achievements": [
+                "Led and implemented the first version of a data trading blockchain system supported by an Azure infrastructure using Canton",
+                "Managed all system components using Terraform.",
+                "Crafted the smart contracts for the data trading platform using DAML.",
+                "Led the development of a patent proposal."
+            ]
+        },
+        {
             "company": "Edugo.ai",
             "role": "Software Engineer Intern",
             "period": "Nov 2020 - Apr 2021",
