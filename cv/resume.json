@@ -1,0 +1,224 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Marco Bertolino",
+    "label": "Lead Cloud Engineer",
+    "email": "marcobertolino.developer@gmail.com",
+    "url": "https://marcobertolino.dev",
+    "location": {
+      "city": "Munich",
+      "countryCode": "DE",
+      "region": "Germany"
+    },
+    "profiles": [
+      {
+        "network": "Website",
+        "username": "marcobertolino.dev",
+        "url": "https://marcobertolino.dev"
+      },
+      {
+        "network": "Blog",
+        "username": "blog.marcobertolino.dev",
+        "url": "https://blog.marcobertolino.dev"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "marco-bertolino",
+        "url": "https://www.linkedin.com/in/marco-bertolino-/"
+      },
+      {
+        "network": "GitHub",
+        "username": "bertomaa",
+        "url": "https://github.com/bertomaa"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Excellence Cloud",
+      "position": "Lead Cloud Engineer",
+      "location": "Munich, Germany",
+      "startDate": "2025-01",
+      "highlights": [
+        "Leading the design, development, and maintenance of scalable, multi-cloud infrastructure across Google Cloud Platform (GCP) and Microsoft Azure, achieving 99.98% uptime in 2025.",
+        "Utilizing Terraform and Terragrunt to implement infrastructure-as-code (IaC) best practices with modular, reusable configurations and environment-specific state management.",
+        "Building and maintaining CI/CD pipelines using GitHub Actions, supporting automated testing, security scanning, and cloud resource provisioning.",
+        "Administering and optimizing GKE (Google Kubernetes Engine) clusters with advanced container orchestration, including service mesh implementation and autoscaling policies.",
+        "Implementing comprehensive observability and monitoring solutions using Prometheus, Grafana, and cloud-native monitoring tools to track infrastructure health, application performance, and cost optimization metrics.",
+        "Deploying runtime security monitoring with Falco and eBPF-based detection for anomalous container behavior, system calls, and potential security threats across Kubernetes workloads.",
+        "Ensuring all infrastructure and operational practices align with ISO 27001 compliance standards, supporting organizational security and governance objectives."
+      ]
+    },
+    {
+      "name": "Spike Reply DE",
+      "position": "Cloud Security Consultant",
+      "location": "Munich, Germany",
+      "startDate": "2023-10",
+      "endDate": "2024-12",
+      "highlights": [
+        "Designed and implemented cloud architectures to streamline data ingestion processes, pipelines, and data virtualization layers using Terraform, Snowflake, and AWS services.",
+        "Performed detailed analysis of client cloud infrastructures to identify and resolve security vulnerabilities in both development and production environments, utilizing both manual assessments and automated tools.",
+        "Built secure Kubernetes environments with Infrastructure as Code (IaC) tools, including Terraform and GitHub pipelines, configuring AWS EKS clusters, Istio service meshes, and Kyverno for security policies.",
+        "Established security best practices for public-facing HTTP REST API gateways, ensuring compliance with industry standards for certificates, protocols, headers, authentication, authorization, and logging.",
+        "Conducted comprehensive security posture evaluations using WIZ, identifying critical vulnerabilities and exposures, and providing actionable recommendations for mitigating risks in cloud environments."
+      ]
+    },
+    {
+      "name": "Siemens",
+      "position": "Cloud Engineer Intern",
+      "location": "Munich, Germany",
+      "startDate": "2023-03",
+      "endDate": "2023-08",
+      "highlights": [
+        "Led and implemented the first version of a data trading blockchain system supported by an Azure infrastructure using Canton.",
+        "Managed all system components using Terraform. Crafted the smart contracts for the data trading platform using DAML.",
+        "Led the development of a patent proposal."
+      ]
+    },
+    {
+      "name": "Edugo.ai",
+      "position": "Software Engineer Intern",
+      "location": "Remote - Shanghai, China",
+      "startDate": "2020-11",
+      "endDate": "2021-04",
+      "highlights": [
+        "Used React.js to enhance the student learning web platform's user experience and interface.",
+        "Developed the core infrastructure of a mobile app using React Native, projected to reach over 50,000 users shortly after launch."
+      ]
+    },
+    {
+      "name": "Freelance - Idem SRL",
+      "position": "Full Stack Developer",
+      "location": "Vicenza, Italy",
+      "startDate": "2019-04",
+      "endDate": "2020-06",
+      "highlights": [
+        "Independently architected and developed an iOS and Android mobile application using Flutter and Firebase for a renowned sandwich company.",
+        "The application successfully gained 2.5k customers within just three months of its launch."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "EIT Digital Master School",
+      "area": "Cyber Security",
+      "studyType": "MSc Double Degree",
+      "startDate": "2021-09",
+      "endDate": "2023-08",
+      "courses": [
+        "MSc Cybersecurity for Cloud at Eurecom, Sophia Antipolis, France (GPA 4.0/4.0)",
+        "MSc Cybersecurity at University of Turku, Finland (GPA 3.3/4.0)"
+      ]
+    },
+    {
+      "institution": "Trento University",
+      "area": "Computer Science",
+      "studyType": "BSc",
+      "startDate": "2018-09",
+      "endDate": "2021-07",
+      "score": "110/110 cum laude",
+      "location": "Trento, Italy",
+      "courses": [
+        "Thesis: Hybrid Mobile Applications: Analysis and Usage of the React Native Framework"
+      ]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "The Linux Foundation",
+      "date": "2024"
+    },
+    {
+      "name": "Certificate of Cloud Security Knowledge v.4 (CCSK)",
+      "issuer": "Cloud Security Alliance",
+      "date": "2023"
+    },
+    {
+      "name": "Microsoft Azure Fundamentals (AZ-900)",
+      "issuer": "Microsoft",
+      "date": "2023"
+    },
+    {
+      "name": "Cisco CCNA Routing and Switching",
+      "issuer": "Cisco",
+      "date": "2018"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Cloud Platforms",
+      "keywords": ["Google Cloud Platform (GCP)", "Amazon Web Services (AWS)", "Microsoft Azure"]
+    },
+    {
+      "name": "Infrastructure as Code",
+      "keywords": ["Terraform", "Terragrunt"]
+    },
+    {
+      "name": "Container Orchestration",
+      "keywords": ["Kubernetes", "GKE", "AWS EKS", "Docker"]
+    },
+    {
+      "name": "CI/CD",
+      "keywords": ["GitHub Actions", "GitLab Pipelines"]
+    },
+    {
+      "name": "Service Mesh & Networking",
+      "keywords": ["Istio", "mTLS"]
+    },
+    {
+      "name": "Observability & Monitoring",
+      "keywords": ["Prometheus", "Grafana", "Falco", "eBPF"]
+    },
+    {
+      "name": "Security & Compliance",
+      "keywords": ["Kyverno", "WIZ", "ISO 27001"]
+    },
+    {
+      "name": "Programming Languages",
+      "keywords": ["Python", "Bash", "JavaScript", "C++"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Italian",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Proficient"
+    },
+    {
+      "language": "German",
+      "fluency": "A2"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Container Freeze - Fileless Malware Capture",
+      "url": "https://github.com/bertomaa/container-freeze",
+      "blog": "https://blog.marcobertolino.dev/blog/detecting-and-capturing-fileless-malware-in-kubernetes/",
+      "highlights": [
+        "Built a proof-of-concept toolkit for Kubernetes incident response that detects supply-chain attacks using Tetragon's eBPF syscall monitoring and freezes malicious processes with SIGSTOP instead of killing them.",
+        "Leverages CRIU to checkpoint frozen container memory, enabling forensic recovery of fileless malware scripts and stolen credentials (K8s secrets, service account tokens) that would otherwise be lost when containers are terminated."
+      ]
+    },
+    {
+      "name": "AWS EKS Security Template",
+      "url": "https://github.com/bertomaa/aws-eks-k8s-security-boilerplate",
+      "highlights": [
+        "Automated secure AWS EKS infrastructure deployment using Terraform, with GitHub Actions CI/CD and modular state management across environments.",
+        "Integrated Istio for mTLS, Kyverno for network/image policies, and Kubernetes RBAC to enforce namespace isolation and zero-trust access controls."
+      ]
+    },
+    {
+      "name": "EUREBOOK - Distributed Sharded Key-Value Store",
+      "url": "https://github.com/bertomaa/Clouds-EURECOM-2022",
+      "highlights": [
+        "Built a distributed social networking platform with C++ and gRPC featuring dynamic shard redistribution, primary-backup replication, and fault tolerance.",
+        "Implemented a shardmaster for key range assignment, shardmanager proxy layer, and shardkv servers supporting Get, Put, Append, and Delete operations with automatic configuration synchronization."
+      ]
+    }
+  ],
+  "publications": []
+}

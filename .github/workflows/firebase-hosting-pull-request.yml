@@ -13,6 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build Docker image for LaTeX
+        run: docker build -t latex ./cv
+
+      - name: Generate CV tex from resume.json
+        run: docker run --rm -v "$PWD/cv:/docs" latex python3 generate_cv.py
+
+      - name: Build CV PDF
+        run: docker run --rm -v "$PWD/cv:/docs" latex latexmk -xelatex -jobname=Marco_Bertolino_CV cv.tex
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

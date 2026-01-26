@@ -2,17 +2,107 @@
 (function () {
     let data = null;
 
+    // Transform JSON Resume format to app format
+    function transformResumeData(resume) {
+        // Extract GitHub and LinkedIn from profiles
+        const github = resume.basics.profiles?.find(p => p.network === 'GitHub')?.url || resume.basics.url;
+        const linkedin = resume.basics.profiles?.find(p => p.network === 'LinkedIn')?.url;
+
+        // Transform education to degrees format
+        const degrees = (resume.education || []).map(edu => {
+            // Check if it's the EIT Digital double degree
+            const isEitDigital = edu.institution === 'EIT Digital Master School';
+
+            if (isEitDigital && edu.courses) {
+                // Split into multiple degree entries for double degree
+                return edu.courses.map((course, index) => {
+                    const match = course.match(/^(MSc .+) at ([^,]+), ([^(]+)\(GPA ([^)]+)\)$/);
+                    if (match) {
+                        return {
+                            institution: match[2].trim(),
+                            degree: match[1].trim(),
+                            year: `${edu.startDate?.slice(0, 4) || ''}/${edu.endDate?.slice(0, 4) || ''}`,
+                            grade: match[4].trim(),
+                            description: `Part of EIT Digital Double Master's Degree. Located in ${match[3].trim()}.`,
+                            degreeGroup: 'eit-digital',
+                            isPrimary: index === 0
+                        };
+                    }
+                    return null;
+                }).filter(Boolean);
+            }
+
+            return [{
+                institution: edu.institution,
+                degree: `${edu.studyType} ${edu.area}`,
+                year: `${edu.startDate?.slice(0, 4) || ''}/${edu.endDate?.slice(0, 4) || ''}`,
+                grade: edu.score?.replace('GPA ', '') || null,
+                description: edu.courses?.[0] || ''
+            }];
+        }).flat();
+
+        // Transform work to experience format
+        const experience = (resume.work || []).map(job => {
+            const startDate = job.startDate ? new Date(job.startDate + '-01') : null;
+            const endDate = job.endDate ? new Date(job.endDate + '-01') : null;
+
+            const formatDate = (date) => {
+                if (!date) return 'Present';
+                return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            };
+
+            return {
+                company: job.name,
+                role: job.position,
+                period: `${formatDate(startDate)} - ${formatDate(endDate)}`,
+                achievements: job.highlights || []
+            };
+        });
+
+        // Transform projects format
+        const projects = (resume.projects || []).map(proj => ({
+            name: proj.name,
+            description: proj.highlights?.join(' ') || '',
+            technologies: [], // JSON Resume doesn't have technologies, could parse from highlights
+            link: proj.url
+        }));
+
+        // Transform skills format
+        const skills = (resume.skills || []).map(skill => ({
+            name: skill.name,
+            keywords: skill.keywords || []
+        }));
+
+        return {
+            personal: {
+                name: resume.basics.name,
+                tagline: resume.basics.label,
+                bio: `${resume.basics.label} based in ${resume.basics.location?.city || ''}, ${resume.basics.location?.region || ''}. Specialized in cloud infrastructure, Kubernetes, and security.`,
+                profilePicture: 'images/profile.jpg',
+                cvUrl: 'cv/Marco_Bertolino_CV.pdf',
+                email: resume.basics.email,
+                github: github,
+                linkedin: linkedin
+            },
+            degrees,
+            skills,
+            experience,
+            projects
+        };
+    }
+
     // Fetch and load data from JSON
     async function loadData() {
         try {
-            const response = await fetch('data.json');
-            data = await response.json();
+            const response = await fetch('cv/resume.json');
+            const resumeData = await response.json();
+            data = transformResumeData(resumeData);
             populateContent();
         } catch (error) {
             console.error('Error loading data:', error);
             // Fallback content
             document.getElementById('hero-name').textContent = 'Loading Error';
-            document.getElementById('hero-tagline').textContent = 'Please check data.json';
+            document.getElementById('hero-tagline').textContent = 'Please check cv/resume.json';
         }
     }
 
@@ -151,6 +241,28 @@
             `;
             degreesContainer.appendChild(degreeCard);
             animationDelay++;
+        });
+
+        // Skills section
+        const skillsContainer = document.getElementById('skills-container');
+        skillsContainer.innerHTML = '';
+
+        data.skills.forEach((skill, index) => {
+            const skillCard = document.createElement('div');
+            skillCard.className = 'glass-card skill-card animate-on-scroll';
+            skillCard.style.animationDelay = `${index * 0.1}s`;
+
+            const keywordTags = skill.keywords
+                .map(keyword => `<span class="skill-tag">${keyword}</span>`)
+                .join('');
+
+            skillCard.innerHTML = `
+                <h3 class="skill-category">${skill.name}</h3>
+                <div class="skill-keywords">
+                    ${keywordTags}
+                </div>
+            `;
+            skillsContainer.appendChild(skillCard);
         });
 
         // Experience section

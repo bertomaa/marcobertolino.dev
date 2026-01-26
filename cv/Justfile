@@ -1,0 +1,33 @@
+# justfile
+
+main_file := "cv.tex"
+image := "latex"
+
+default: build-pdf
+
+# Build the Docker image
+docker-build:
+    docker build -t {{image}} .
+
+# Generate cv.tex from resume.json
+generate-tex-only:
+    docker run --rm -v "$PWD:/docs" {{image}} python3 generate_cv.py
+
+# Build CV (generates from JSON, then compiles PDF)
+build-pdf: generate-tex-only
+    docker run --rm -v "$PWD:/docs" {{image}} latexmk -xelatex -jobname=Marco_Bertolino_CV {{main_file}}
+
+# Clean auxiliary files
+clean:
+    docker run --rm -v "$PWD:/docs" {{image}} latexmk -c
+
+# Clean everything including the PDF
+clean-all:
+    docker run --rm -v "$PWD:/docs" {{image}} latexmk -C
+
+# Force a rebuild (clean then build)
+rebuild: clean build-pdf
+
+# Watch for file changes and automatically rebuild PDF
+watch:
+    find . -name "*.json" -o -name "*.py" -o -name "*.cls" | entr -c just build-pdf
