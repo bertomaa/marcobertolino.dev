@@ -13,7 +13,7 @@
 \RequirePackage{titlesec}
 \RequirePackage{tikz}
 \RequirePackage{fontspec}
-\RequirePackage[left=0.5in,top=0.1in,right=0.5in,bottom=0.1in]{geometry} % DOCUMENT MARGINS 
+\RequirePackage[left=0.5in,top=0.4in,right=0.5in,bottom=0.4in]{geometry} % DOCUMENT MARGINS 
 \RequirePackage{hyperref}
 \RequirePackage{fontawesome}
 \RequirePackage{mfirstuc}
@@ -44,36 +44,31 @@
 }
 
 % Header
-\newcommand\headerview{
-\hfill
-\begin{minipage}{0.55\linewidth} % extend header length here
-    \center \name \\[0.05cm] 
-    \contact % address \ mobile \\ mail
-\end{minipage}
-\hfill
+\newcommand\headerview{%
+\begin{center}
+    \name\\[0.3cm]
+    \contact
+\end{center}
 }
-    
-\newcommand{\linkedinview}{\href{\@linkedinaccount}{\faLinkedinSquare\ \footnotesize LinkedIn}}
-\newcommand{\githubview}{\href{\@githubaccount}{\faGithubSquare\ \footnotesize GitHub}}
-\newcommand{\websiteview}{\href{\@website}{\faGlobe\ \footnotesize Website}}
-\newcommand{\blogview}{\href{\@blog}{\faPencil\ \footnotesize Blog}}
+
+\newcommand{\linkedinview}{\href{\@linkedinaccount}{linkedin.com/in/marco-bertolino-}}
+\newcommand{\githubview}{\href{\@githubaccount}{github.com/bertomaa}}
+\newcommand{\websiteview}{\href{\@website}{marcobertolino.dev}}
+\newcommand{\blogview}{\href{\@blog}{blog.marcobertolino.dev}}
 \newcommand{\emailview}{%
   \edef\@emailurl{mailto:\@mail}%
-  \expandafter\href\expandafter{\@emailurl}{\faEnvelope\ \footnotesize Email}%
+  \expandafter\href\expandafter{\@emailurl}{\@mail}%
 }
 
 \newcommand{\name}{%
-    {\LARGE \color{\@themecolor} \@firstname \ \textsc{\@lastname}}
-    \ifx\@position\empty\else\\[0.1cm]{\large \@position}\fi
+    {\fontsize{28}{32}\selectfont \color{\@themecolor} \@firstname}%
 }
 
 % Initialize position as empty
 \def\@position{}
 
 \newcommand{\contact}{%
-        {\small \emailview \cpshalf \linkedinview \cpshalf \githubview \cpshalf \websiteview \cpshalf \blogview %
-        \ifx\@address\empty\else\\ \@address\fi
-        } %
+    {\small \hypersetup{urlcolor=black} \ifx\@address\empty\else\@address\ |\ \fi \emailview\ |\ \linkedinview\ |\ \githubview\ |\ \websiteview\ |\ \blogview}%
 }
 
 % Initialize optional fields as empty
@@ -92,13 +87,13 @@
 \newcommand{\coloredbullet}{{\color{\@themecolor} \textbullet}}
 
 % Edit section styles
-\titleformat{\section}      % Customise the \section command 
-  {\large\bfseries\scshape\raggedright\color{\@themecolor}} % Make the \section headers large (\Large),
+\titleformat{\section}      % Customise the \section command
+  {\Large\bfseries\scshape\raggedright\color{\@themecolor}} % Make the \section headers large (\Large),
                                % small capitals (\scshape) and left aligned (\raggedright)
   {}{0em}                      % Can be used to give a prefix to all sections, like 'Section ...'
   {\ruleafter}                           % Can be used to insert code before the heading
 
-\titlespacing*{\section}{-1pt}{-10pt}{0pt}
+\titlespacing*{\section}{-1pt}{12pt}{3pt}
 
 % Textview commands
 \newcommand{\experience}[2]{%
